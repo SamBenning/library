@@ -1,12 +1,20 @@
 const displayAddBookForm = () => {
   const container = document.createElement('div');
+  const closeBtn = document.createElement('a')
   const formHeader = document.createElement('h1');
   const form = document.createElement('form')
   container.classList.add('add-book-form')
   formHeader.innerText = 'Add Book'
+  closeBtn.classList.add('closeBtn');
 
+  container.appendChild(closeBtn);
   container.appendChild(formHeader)
   container.appendChild(form)
+
+  closeBtn.addEventListener('click', () => {
+      body.removeChild(container);
+      cardArea.classList.remove('blur');
+  })
 
   //Add Title label and field
   const bookTitleLabel = document.createElement('label');
@@ -15,8 +23,10 @@ const displayAddBookForm = () => {
   bookTitleField.setAttribute('id', 'bookTitle');
   bookTitleLabel.setAttribute('for', 'bookTitle');
 
-  form.appendChild(bookTitleLabel);
-  form.appendChild(bookTitleField);
+  const titleContainer = document.createElement('div');
+  titleContainer.appendChild(bookTitleLabel);
+  titleContainer.appendChild(bookTitleField);
+  form.appendChild(titleContainer);
   form.appendChild(document.createElement('br'));
 
   //Add Author label and field
@@ -26,19 +36,24 @@ const displayAddBookForm = () => {
   bookAuthorField.setAttribute('id', 'bookAuthor');
   bookAuthorLabel.setAttribute('for', 'bookAuthor');
 
-  form.appendChild(bookAuthorLabel);
-  form.appendChild(bookAuthorField);
+  const authorContainer = document.createElement('div')
+  authorContainer.appendChild(bookAuthorLabel);
+  authorContainer.appendChild(bookAuthorField);
+  form.appendChild(authorContainer);
   form.appendChild(document.createElement('br'));
 
   //Add Pages label and field
   const bookPagesLabel = document.createElement('label');
   const bookPagesField = document.createElement('input');
+  bookPagesField.type = 'number';
   bookPagesLabel.innerText = 'Pages:'
   bookPagesField.setAttribute('id', 'bookPages');
   bookPagesLabel.setAttribute('for', 'bookPages');
 
-  form.appendChild(bookPagesLabel);
-  form.appendChild(bookPagesField);
+  const pagesContainer = document.createElement('div');
+  pagesContainer.appendChild(bookPagesLabel);
+  pagesContainer.appendChild(bookPagesField);
+  form.appendChild(pagesContainer);
   form.appendChild(document.createElement('br'));
 
   //Add hasRead label and field
@@ -49,13 +64,26 @@ const displayAddBookForm = () => {
   bookHasReadCheck.setAttribute('id', 'bookRead');
   bookHasReadLabel.setAttribute('for', 'bookRead');
 
-  form.appendChild(bookHasReadLabel);
-  form.appendChild(bookHasReadCheck);
+  const hasReadContainer = document.createElement('div');
+  hasReadContainer.appendChild(bookHasReadLabel);
+  hasReadContainer.appendChild(bookHasReadCheck);
+  form.appendChild(hasReadContainer);
   form.appendChild(document.createElement('br'));
 
   //Add submit button
   const submitBtn = document.createElement('input');
-  submitBtn.type = 'submit';
+  submitBtn.type = 'button';
+  submitBtn.onclick= () => {
+      
+      const title = document.getElementById('bookTitle').value;
+      const author = document.getElementById('bookAuthor').value;
+      const pages = document.getElementById('bookPages').value;
+      const hasRead = document.getElementById('bookRead').checked;
+      const newBook = new Book(title, author, pages, hasRead);
+      cardArea.appendChild(newBook.info());
+      cardArea.classList.remove('blur');
+      body.removeChild(container);
+  }
   submitBtn.value = 'Add';
 
   form.appendChild(submitBtn);

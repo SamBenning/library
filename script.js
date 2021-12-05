@@ -5,44 +5,12 @@ const body = document.querySelector('body')
 
 let myLibrary = [];
 
-function Book(title, author, pages, hasRead) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.hasRead = hasRead
-    this.readStatus = '';
-    this.info = function () {
-      
-      if(this.hasRead) {
-        this.readStatus = 'read'
-      } else {
-        this.readStatus = 'not read'
-      }
-      const bookCard = document.createElement('div');
-      bookCard.classList.add('card');
-      const title = document.createElement('h2');
-      const author = document.createElement('p');
-      const pages = document.createElement('p');
-      const readString = document.createElement('p');
-      title.innerText = this.title;
-      author.innerText = this.author;
-      pages.innerText = this.pages;
-      readString.innerText = this.readStatus;
-      bookCard.appendChild(title);
-      bookCard.appendChild(author);
-      bookCard.appendChild(pages);
-      bookCard.appendChild(readString);
-      return bookCard
-    }
-}
-
 const displayAllBooks = () => {
   for (i = 0; i < myLibrary.length; i++) {
       currBook = myLibrary[i].info();
       cardArea.appendChild(currBook)
   }    
 }
-
 
 addBookBtn.addEventListener('click', displayAddBookForm);
 
