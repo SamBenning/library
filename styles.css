@@ -1,0 +1,33 @@
+body {
+    float: left;
+    position: relative;
+}
+
+.card-area {
+    display: grid;
+    background-color: bisque;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.blur {
+    filter: blur(4px);
+}
+
+.card {
+    background-color: gray;
+    height: auto;
+    width: auto;
+}
+
+.add-book-btn {
+    color: green;
+}
+
+.add-book-form {
+    background-color: blueviolet;
+    position: absolute;
+
+    top: 50px;
+}
