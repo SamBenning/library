@@ -1,7 +1,4 @@
-body {
-    float: left;
-    position: relative;
-}
+
 
 .card-area {
     display: grid;
@@ -28,6 +25,6 @@ body {
 .add-book-form {
     background-color: blueviolet;
     position: absolute;
-
-    top: 50px;
+    left: 20%;
+    top: 10%;
 }
