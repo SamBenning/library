@@ -3,8 +3,10 @@ const displayAddBookForm = () => {
   const closeBtn = document.createElement('a')
   const formHeader = document.createElement('h1');
   const form = document.createElement('form')
+  form.classList.add('add-book-input');
   container.classList.add('add-book-form')
   formHeader.innerText = 'Add Book'
+  formHeader.classList.add('add-book-header')
   closeBtn.classList.add('closeBtn');
 
   container.appendChild(closeBtn);
@@ -86,7 +88,7 @@ const displayAddBookForm = () => {
         body.removeChild(container);
         app.classList.remove('blur');
       } else {
-        alert('Invalid input!')
+        displayEmptyFieldMessage(title, author, pages);
       }
       console.log(title);
       console.log(author);
@@ -105,10 +107,46 @@ const displayAddBookForm = () => {
   app.classList.add('blur')
 }
 
-const validateInput = (title, author, pages) => {
+const validateInput = (title, author, pages) => {   
+    
     if (title === '' || author === '' || pages === '') {
         return false;
     } else {
         return true;
+    }
+}
+
+const displayEmptyFieldMessage = (title, author, pages) => {
+    const fields = [pages, author, title];
+    let firstEmptyField = -1;
+    for (i=0 ; i < fields.length; i++) {
+        if (fields[i] === '') {
+            firstEmptyField = i
+            console.log(i)
+            break;
+        }
+    }
+    console.log(firstEmptyField)
+
+    function drawBox (parentDiv) {
+        const newDiv = document.createElement('div');
+        newDiv.classList.add('empty-field-message');
+        const viewportOffset = parentDiv.getBoundingClientRect();
+        const top = viewportOffset.top;
+        const left = viewportOffset.left;
+        newDiv.style.marginTop = top;
+        newDiv.style.marginLeft = left;
+        console.log(top + left)
+        body.appendChild(newDiv);
+    }
+
+    switch (firstEmptyField) {
+        case 0:
+            drawBox(titleContainer);
+        case 1:
+            drawBox(authorContainer);
+        case 2:
+            drawBox(pagesContainer);
+
     }
 }
