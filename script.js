@@ -1,6 +1,7 @@
 const cardArea = document.querySelector('div.card-area');
 const addBookBtn = document.querySelector('button.add-book-btn');
-const body = document.querySelector('body')
+const body = document.querySelector('body');
+const app = document.querySelector('div.app');
 //const card = document.querySelector('.card')
 
 let myLibrary = [];

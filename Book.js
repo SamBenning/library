@@ -22,10 +22,12 @@ function Book(title, author, pages, hasRead) {
       const author = document.createElement('p');
       const pages = document.createElement('p');
       const readBtn = document.createElement('button');
+      const delBtn = document.createElement('button');
       title.innerText = this.title;
       author.innerText = this.author;
       pages.innerText = this.pages;
       readBtn.innerText = this.readStatus;
+      delBtn.innerText = 'Remove';
 
       readBtn.addEventListener('click', () => {
         this.hasRead = !this.hasRead;
@@ -33,10 +35,15 @@ function Book(title, author, pages, hasRead) {
         readBtn.innerText = this.readStatus;
       });
 
+      delBtn.addEventListener('click', () => {
+          cardArea.removeChild(delBtn.parentNode);
+      })
+
       bookCard.appendChild(title);
       bookCard.appendChild(author);
       bookCard.appendChild(pages);
       bookCard.appendChild(readBtn);
+      bookCard.appendChild(delBtn);
 
 
 

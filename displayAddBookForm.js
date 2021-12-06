@@ -13,7 +13,7 @@ const displayAddBookForm = () => {
 
   closeBtn.addEventListener('click', () => {
       body.removeChild(container);
-      cardArea.classList.remove('blur');
+      app.classList.remove('blur');
   })
 
   //Add Title label and field
@@ -74,15 +74,25 @@ const displayAddBookForm = () => {
   const submitBtn = document.createElement('input');
   submitBtn.type = 'button';
   submitBtn.onclick= () => {
-      
       const title = document.getElementById('bookTitle').value;
       const author = document.getElementById('bookAuthor').value;
       const pages = document.getElementById('bookPages').value;
       const hasRead = document.getElementById('bookRead').checked;
-      const newBook = new Book(title, author, pages, hasRead);
-      cardArea.appendChild(newBook.info());
-      cardArea.classList.remove('blur');
-      body.removeChild(container);
+
+      if (validateInput(title, author, pages)) {
+        const newBook = new Book(title, author, pages, hasRead);
+        cardArea.appendChild(newBook.info());
+        cardArea.classList.remove('blur');
+        body.removeChild(container);
+        app.classList.remove('blur');
+      } else {
+        alert('Invalid input!')
+      }
+      console.log(title);
+      console.log(author);
+      console.log(pages);
+
+      
   }
   submitBtn.value = 'Add';
 
@@ -92,5 +102,13 @@ const displayAddBookForm = () => {
   //Append the container div for the form to body
   //Apply blur class to card-area
   body.appendChild(container);
-  cardArea.classList.add('blur')
+  app.classList.add('blur')
+}
+
+const validateInput = (title, author, pages) => {
+    if (title === '' || author === '' || pages === '') {
+        return false;
+    } else {
+        return true;
+    }
 }
