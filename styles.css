@@ -3,6 +3,7 @@ label {
     width: 100px;
 }
 
+
 .card-area {
     display: grid;
     justify-content: center;
@@ -21,6 +22,8 @@ label {
     gap: 10px;
     
 }
+
+
 
 .app > .heading-container {
     display: flex;
@@ -41,14 +44,10 @@ label {
 
 .app > .sign-in-btn-container {
     display: flex;
+    margin-bottom: auto;
     justify-content: right;
     grid-column: 3;
     grid-row: 1;
-}
-
-.app > .sign-in-btn {
-    width:100px;
-    height: 50px;
 }
 
 .app > .card-area {
@@ -59,6 +58,12 @@ label {
 .blur {
     filter: blur(4px);
 }
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
+  }
 
 .card {
     display: grid;
@@ -90,7 +95,6 @@ label {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    height: 50px;
 }
 
 .sign-in-btn {
@@ -102,7 +106,6 @@ label {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    height: 50px;
 }
 
 .add-book-form {
@@ -169,12 +172,17 @@ label {
   }
 
   .empty-field-message {
-      position: relative;
+      position: absolute;
       border: 1px solid black;
       border-radius: 5px;
-      width: 150px;
-      height: 30px;
+      width: 200px;
+      height: 40px;
       background: teal;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
 
 
       /* position: relative;
@@ -207,6 +215,7 @@ label {
     /* top: 19px; */
     right: 100px;
     background: inherit;
+    z-index: 0;
     
     -webkit-transform: rotate(45deg);
     -moz-transform: rotate(45deg);
@@ -214,3 +223,4 @@ label {
     transform: rotate(45deg);
 
   }
+

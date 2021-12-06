@@ -97,6 +97,7 @@ const displayAddBookForm = () => {
       
   }
   submitBtn.value = 'Add';
+  submitBtn.id = 'add-btn';
 
   form.appendChild(submitBtn);
 
@@ -132,21 +133,35 @@ const displayEmptyFieldMessage = (title, author, pages) => {
         const newDiv = document.createElement('div');
         newDiv.classList.add('empty-field-message');
         const viewportOffset = parentDiv.getBoundingClientRect();
-        const top = viewportOffset.top;
-        const left = viewportOffset.left;
-        newDiv.style.marginTop = top;
-        newDiv.style.marginLeft = left;
-        console.log(top + left)
+        const top = viewportOffset.top + parentDiv.clientHeight;
+        const left = viewportOffset.left + parentDiv.clientWidth/2.7;
+        newDiv.style.position = "absolute";
+        console.log("top: " + top)
+        console.log("left: " + left)
+        console.log("parent div height:" + parentDiv.style.height)
         body.appendChild(newDiv);
+        newDiv.style.top = top + 'px';
+        newDiv.style.left = left + 'px';
+        newDiv.innerHTML = "<p>Please enter something!</p>"
+
+        setTimeout( () => {
+            newDiv.classList.add('hidden');
+        }, 3*1000);
+
+        setTimeout( () => {
+            newDiv.parentElement.removeChild(newDiv);
+        }, 5*1000);
+
+
+
     }
 
     switch (firstEmptyField) {
         case 0:
-            drawBox(titleContainer);
+            drawBox(document.getElementById('bookTitle').parentNode);
         case 1:
-            drawBox(authorContainer);
+           
         case 2:
-            drawBox(pagesContainer);
-
+          
     }
 }
