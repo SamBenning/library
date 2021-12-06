@@ -68,4 +68,32 @@
     .add-book-form .add-book-input .add-btn {
         height: 50px;
     }
+
+    .card > #title-container{
+        font-size: 1.75em;
+    }
+
+    .card > p {
+        font-size: 1.5em;
+    }
+
+    .card > button {
+        height: 50px;
+    }
+
+    .closeBtn {
+        opacity: 1;
+        background-color: rgba(255, 0, 0, 0.493);
+        height: 66px;
+        width: 66px;
+    }
+
+    .closeBtn:before, .closeBtn:after {
+        position: absolute;
+        left: 33px;
+        content: ' ';
+        height: 66px;
+        width: 2px;
+        background-color:#777;
+      }
 }
